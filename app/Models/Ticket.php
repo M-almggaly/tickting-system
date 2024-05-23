@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Department; 
 use App\Models\Reply;
+use App\Models\User;
 
 class Ticket extends Model
 {
@@ -32,5 +33,9 @@ class Ticket extends Model
     public function replies()
     {
         return $this->hasMany(Reply::class); // Define the hasMany relationship with Reply
+    }
+    public function user()
+    {
+    return $this->belongsTo(User::class, 'user_id');
     }
 }

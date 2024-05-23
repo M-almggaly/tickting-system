@@ -9,15 +9,16 @@ use App\Http\Controllers\UserController;
 //     return view('welcome');
 // });
 
-Route::get('/new-ticket', function () {
+Route::get('/customer/new-ticket', function () {
     return view('customer/new-ticket');
 })->middleware(['auth', 'verified'])->name('new-ticket');
 
 
 Route::get('/user/show-ticket',[UserController::class, 'index']);
-Route::get('/show-ticket',[TicketController::class, 'index']);
+Route::get('/show-ticket',[TicketController::class, 'index'])->name('customer.show');
 Route::get('/customer/new-ticket',[TicketController:: class,'create'])->name('customer.create');
 Route::post('/new-ticket',[TicketController:: class,'store'])->name('new-ticket.store');
+Route::post('/show-ticket', [TicketController:: class, 'showTicket'])->name('show.ticket');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

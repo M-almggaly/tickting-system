@@ -14,61 +14,7 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        {{-- Navbar Brand --}}
-        <a class="navbar-brand ps-3" href="http://127.0.0.1:8000/customer/new-ticket">Tickting System</a>
-        {{-- Sidebar Toggle --}}
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-        {{-- Navbar Search --}}
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..."
-                    aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
-                        class="fas fa-search"></i></button>
-            </div>
-        </form>
-        {{-- Navbar --}}
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                    data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="http://127.0.0.1:8000/customer/new-ticket">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            New Ticket
-                        </a>
-                        <a class="nav-link collapsed" href="http://127.0.0.1:8000/show-ticket">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Show Ticket
-                        </a>
-
-                    </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    Start Bootstrap
-                </div>
-            </nav>
-        </div>
-        {{-- navber end --}}
+    @include('customer.navber')
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -78,7 +24,8 @@
                     </ol>
 
                     {{-- The beginning of the form in which the customer enters problem data --}}
-                    <form id="forms" class="grob-ticket " action="{{ route('new-ticket.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="forms" class="grob-ticket " action="{{ route('new-ticket.store') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-floating">
                             <input type="text" class="title form-control" id="title" name="title"
@@ -101,40 +48,46 @@
                         <div class="result"
                             style="display: flex;justify-content: flex-start;flex-direction: row;width: 100%;">
                             <div class="form-floating">
-                                <input type="text" class="expected form-control" id="expected"
-                                    name="expected" placeholder="text" required>
+                                <input type="text" class="expected form-control" id="expected" name="expected"
+                                    placeholder="text" required>
                                 <label for="expected">النتيجة المتوقعة</label>
                             </div>
                             <div class="form-floating">
-                                <input type="text" class="actual form-control" id="actual"
-                                    name="actual" placeholder="text" required>
+                                <input type="text" class="actual form-control" id="actual" name="actual"
+                                    placeholder="text" required>
                                 <label for="actual">النتيجة الفعلية</label>
                             </div>
                         </div>
                         <div class="form-floating d-flex justify-content-between">
                             <div class="w-50 me-1">
-                              <label for="input-file" class="d-flex justify-content-end align-items-center">
-                                <img src="{{ url('assets-ticket/img/svgexport-17 (1).svg')}}" id="profile-pic" class="rounded me-2" alt="..." style="width: 50px; height: 50px;">
-                                Upload Image
-                              </label>
-                              <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" name="img" class="form-control d-none" required>
+                                <label for="input-file"
+                                    style="    display: flex;align-items: center;flex-direction: column;">
+                                    <img src="{{ url('assets-ticket/img/svgexport-17 (1).svg') }}" id="profile-pic"
+                                        class="rounded me-2" alt="..." style="width: 50px; height: 50px;">
+                                    Upload Image
+                                </label>
+                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file"
+                                    name="img" class="form-control d-none" required>
                             </div>
-                            {{-- <div class="w-50 ms-1">
-                              <label for="input-file2" class="d-flex justify-content-end align-items-center">
-                                <video id="video-preview" class="w-100" src="{{ url('assets-ticket/img/ايمن قصيله - شافتك عيني- aiman qusailah _Shaftak 3ayni.mkv')}}" ></video>
-                                Upload Video
-                              </label>
-                              <input type="file" accept="video/mp4,video/mkv " id="input-file2" name="videos" class="form-control d-none" required>
-                            </div> --}}
-                          </div>
-                          
+                            <div class="w-50 ms-1">
+                                <label for="input-fileVideo"
+                                    style="display: flex;align-items: center;flex-direction: column; background-image: url(/public/assets-ticket/img/svgexport-19.svg);">
+                                    <video id="video-preview" class="w-100"
+                                        style="background-image: url(/public/assets-ticket/img/svgexport-19.svg);"></video>
+                                    Upload Video
+                                </label>
+                                <input type="file" id="input-fileVideo" name="videos"
+                                    class="form-control" required>
+                            </div>
+                        </div>
+
                         <div class="form-floating">
                             <input class="deprartment form-control" list="datalistOptions" id="deprartment"
                                 name="deprartment" placeholder="text" required>
                             <label for="deprartment">القسم</label>
                             <datalist id="datalistOptions">
                                 @foreach ($departments as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </datalist>
                         </div>
@@ -160,9 +113,9 @@
                         </div>
                     </form>
                     <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" style="margin-top: 11rem;"
-                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id="staticBackdrop" style="margin-top: 11rem;" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body"
@@ -175,7 +128,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <form><button type="submit" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">OK</button></form>
+                                            data-bs-dismiss="modal">OK</button></form>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +140,8 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                        <div class="text-muted"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
+                                style="max-width: 30%;"></div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
@@ -209,65 +163,71 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="{{ url('js-ticket/datatables-simple-demo.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>   
-             <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
         $(document).ready(function() {
-$("#forms").submit(function(e) {
-e.preventDefault(); // Prevent default form submission
+            $("#forms").submit(function(e) {
+                e.preventDefault(); // Prevent default form submission
 
-var formData = new FormData(this); // Create FormData object
+                var formData = new FormData(this); // Create FormData object
 
-$.ajax({
-    type: "POST",
-    url: "{{ route('new-ticket.store') }}",
-    data: formData,
-    processData: false,
-    contentType: false,
-    success: function(response) {
-        if (response.success) {
-            $('#staticBackdrop').modal('show');
-        } else {
-            // Handle failure case (e.g., display error message using response data)
-            console.error(response.message); // Log error message for debugging
-            alert("An error occurred. Please try again."); // Inform user about the error
-        }
-    },
-    error: function(error) {
-        console.error(error); // Log error for debugging
-        alert("An unexpected error occurred. Please try again."); // Inform user about the error
-    }
-});
-});
-});
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('new-ticket.store') }}",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response.success) {
+                            $('#staticBackdrop').modal('show');
+                        } else {
+                            // Handle failure case (e.g., display error message using response data)
+                            console.error(response.message); // Log error message for debugging
+                            alert(
+                                "An error occurred. Please try again."
+                            ); // Inform user about the error
+                        }
+                    },
+                    error: function(error) {
+                        console.error(error); // Log error for debugging
+                        alert(
+                            "An unexpected error occurred. Please try again."
+                        ); // Inform user about the error
+                    }
+                });
+            });
+        });
     </script>
-    
-     <script>
-     let profilePic = document.getElementById("profile-pic");
-     let inputFile = document.getElementById("input-file");
-     
-     inputFile.onchange = function() {
-       // Validate image file type (optional)
-       // You can add image type validation here if needed
-     
-       // Display image preview
-       profilePic.src = URL.createObjectURL(inputFile.files[0]);
-     };
-     
-     let videoPreview = document.getElementById("video-preview");
-     let inputFile2 = document.getElementById("input-file2");
-     
-     inputFile2.onchange = function() {
-       // Validate video file type
-       if (!inputFile2.files[0].type.match('video/mp4|video/mkv')) {
-         alert("Please select an MP4 video file.");
-         return; // Prevent invalid file types from being displayed
-       }
-     
-       // Display video preview and load the video for playback
-       videoPreview.src = URL.createObjectURL(inputFile2.files[0]);
-       videoPreview.load();
-     };
-     </script>
+
+    <script>
+        let profilePic = document.getElementById("profile-pic");
+        let inputFile = document.getElementById("input-file");
+
+        inputFile.onchange = function() {
+            // Validate image file type (optional)
+            // You can add image type validation here if needed
+
+            // Display image preview
+            profilePic.src = URL.createObjectURL(inputFile.files[0]);
+        };
+
+        let videoPreview = document.getElementById("video-preview");
+        let inputFile2 = document.getElementById("input-fileVideo");
+
+        inputFile2.onchange = function() {
+            // Validate video file type
+            if (!inputFile2.files[0].type.match('video')) {
+                alert("الرجاء تحديد فيديو .");
+                return; // Prevent invalid file types from being displayed
+            }
+
+            // Display video preview and load the video for playback
+            videoPreview.src = URL.createObjectURL(input - fileVideo.files[0]);
+            videoPreview.load();
+        };
+    </script>
 </body>
 
 </html>

@@ -6099,6 +6099,9 @@ textarea.form-control-lg {
 }
 
 @media (max-width: 575.98px) {
+  .text-muted img{
+    max-width: 50%;
+  }
   .offcanvas-sm {
     position: fixed;
     bottom: 0;
@@ -11311,6 +11314,17 @@ td {
 .cards{
   text-align: right;
   direction: rtl;
+}
+.input-search{
+  text-align: right;
+  direction: rtl;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  flex-direction: row-reverse;
+
 }
 @media (max-width:360px) {
   .grob-ticket {

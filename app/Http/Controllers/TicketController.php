@@ -12,7 +12,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $ticket = Ticket::all(); // Replace with your model name and query
+        $ticket = Ticket::with('user')->get();
         return view('customer.show-ticket', compact('ticket'));
     }
 
@@ -23,6 +23,14 @@ class TicketController extends Controller
     {
         $departments = Department::all(); // Replace with your model name and query
         return view('customer.new-ticket', compact('departments'));
+    }
+
+    public function showTicket(Request $request)
+    {
+        $ticketId = $request->input('id');
+        $ticket = Ticket::findOrFail($ticketId);
+        // Fetch the ticket data and return it as a response
+        return view('customer.model-show-ticket', compact('ticket'))->render();
     }
 
     /**
@@ -58,19 +66,32 @@ class TicketController extends Controller
         $create->support_documentation = strip_tags($request->input('support'));
 
         $image = $request->file('img');
+        $video = $request->file('videos');
 
-        if ($image) {
+
+        if($image != ""){
             // Get the original filename without extension
             $originalFilenameimg = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-    
             // Get the file extension
             $extensionimg = $image->getClientOriginalExtension();
             // Generate a unique filename using the original filename and extension
             $imageName = $originalFilenameimg . '.' . $extensionimg;
-    
             $image->storeAs('assets-ticket', $imageName); // Adjust path as needed
-            $Name = $imageName;
+            if($video != ""){
+            // Get the original filename without extension
+            $originalFilenamevid = pathinfo($video->getClientOriginalName(), PATHINFO_FILENAME);
+            // Get the file extension
+            $extensionvid = $video->getClientOriginalExtension();
+            // Generate a unique filename using the original filename and extension
+            $videoname = $originalFilenamevid . '.' . $extensionvid;
+            $video->storeAs('assets-ticket', $videoname); // Adjust path as needed
+            $Name = $imageName . " , " . $videoname;
             $create->image = $Name;  // Store only the generated filename
+            }
+            else{
+            $Name = $imageName;
+            $create->image = $Name; 
+            }
         }
         $create->user_id = 1;
 
