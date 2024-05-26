@@ -13,8 +13,8 @@ use App\Http\Controllers\adminController;
 Route::get('/customer/new-ticket', function () {
     return view('customer/new-ticket');
 })->middleware(['auth', 'verified'])->name('new-ticket');
-
-
+// في routes/web.php
+Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])->name('tickets.destroy');
 Route::get('/admin/index',[adminController:: class,'index'])->name('admin.index');
 Route::get('/admin/login',[adminController:: class,'useradd'])->name('admin.login');
 Route::get('/admin/dangerous',[adminController:: class,'dangerous'])->name('admin.dangerous');

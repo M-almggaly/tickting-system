@@ -113,8 +113,9 @@
                                     </button>
                                     <button class="show-ticket" type="button" value=""
                                     style="border-radius: 6px;border: 1px solid #08061c17;width: 70%;margin-left: 10px;"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                        class="fi fi-bs-trash"></i> حذف</button></td>
+                                    onclick="deleteTicket({{ $item->id }})">
+                                    <i class="fi fi-bs-trash"></i> حذف
+                                </button></td>
                                 </tr>
                             @endforeach
 
@@ -196,8 +197,30 @@ $('.show-modal').on('click', function(e) {
         console.error('Response:', xhr.responseText);
     }
 });
-});
+});</script>
+<script>
+
+function deleteTicket(id) {
+    if (confirm('Are you sure you want to delete this ticket?')) {
+        $.ajax({
+            url: '/tickets/' + id,
+            type: 'DELETE',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                // Reload the page to reflect the updated list of tickets
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                // Handle the error case, e.g., show an error message
+                console.error(error);
+            }
+        });
+    }
+}
     </script>
+
 </body>
 
 </html>
