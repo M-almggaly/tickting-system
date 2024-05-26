@@ -68,12 +68,8 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            <div class="text-muted"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
+                                    style="max-width: 30%;"></div>
                         </div>
                     </div>
                 </footer>

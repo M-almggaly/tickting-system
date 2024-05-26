@@ -8,6 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>New-Ticket</title>
+    <link href="https://fontawesome.com/icons/spinner?f=classic&s=solid&an=spin-pulse" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="{{ url('css/style.css') }}" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -17,10 +18,10 @@
     @include('customer.navber')
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">New Tickting</h1>
+                <div class="container-fluid px-4" style="padding-right: 15.5rem !important;">
+                    <h1 class="mt-4">المشكلة جديدة</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">New Tickting</li>
+                        <li class="breadcrumb-item active">المشكلة جديدة</li>
                     </ol>
 
                     {{-- The beginning of the form in which the customer enters problem data --}}
@@ -60,24 +61,25 @@
                         </div>
                         <div class="form-floating d-flex justify-content-between">
                             <div class="w-50 me-1">
-                                <label for="input-file"
-                                    style="    display: flex;align-items: center;flex-direction: column;">
-                                    <img src="{{ url('assets-ticket/img/svgexport-17 (1).svg') }}" id="profile-pic"
-                                        class="rounded me-2" alt="..." style="width: 50px; height: 50px;">
-                                    Upload Image
+                                <label for="input-file" style="display: flex;align-items: center;flex-direction: column;">
+                                    <a href="#" class="fancybox" data-fancybox="gallery">
+                                        <img src="{{ asset('assets-ticket/img/svgexport-17 (1).svg') }}" id="profile-pic" class="rounded me-2" alt="..." style="    width: 89%;
+                                        height: 25vh;">
+                                    </a>
+                                  <div style="margin-top: 5px; border: 1px solid rgba(74, 74, 246, 0.603); border-radius: 4px">Upload Image</div>
                                 </label>
-                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file"
-                                    name="img" class="form-control d-none" required>
+                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" name="img" class="form-control d-none" required onchange="previewImage(this)">
                             </div>
+                        
                             <div class="w-50 ms-1">
-                                <label for="input-fileVideo"
-                                    style="display: flex;align-items: center;flex-direction: column; background-image: url(/public/assets-ticket/img/svgexport-19.svg);">
-                                    <video id="video-preview" class="w-100"
-                                        style="background-image: url(/public/assets-ticket/img/svgexport-19.svg);"></video>
-                                    Upload Video
+                                <label for="input-fileVideo" style="display: flex;align-items: center;flex-direction: column; background-image: url(/public/assets-ticket/img/svgexport-19.svg);">
+                                    <video id="video-preview" class="w-100" controls>
+                                        <source src="" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                   <div style="margin-top: 5px; border: 1px solid rgba(74, 74, 246, 0.603);border-radius: 4px">Upload Video</div>
                                 </label>
-                                <input type="file" id="input-fileVideo" name="videos"
-                                    class="form-control" required>
+                                <input type="file" id="input-fileVideo" name="videos" class="form-control d-none" required onchange="previewVideo(this)">
                             </div>
                         </div>
 
@@ -87,7 +89,7 @@
                             <label for="deprartment">القسم</label>
                             <datalist id="datalistOptions">
                                 @foreach ($departments as $item)
-                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    <option value="{{$item->name}}"></option>
                                 @endforeach
                             </datalist>
                         </div>
@@ -105,8 +107,8 @@
                         <div class="form-floating">
                             <!-- Button trigger modal -->
                             <button type="submit" class="btn btn-primary" name="submit"
-                                style="margin-bottom: 25px;">
-                                أرسال
+                                style="margin-bottom: 25px;display:flex; align-items: center">
+                               أرسال <i id="preloader" class="fa-solid fa-spinner fa-spin-pulse" style="margin-right: 0.8rem"></i>
                             </button>
 
 
@@ -179,7 +181,13 @@
                     data: formData,
                     processData: false,
                     contentType: false,
+                    beforeSend:function(){
+                     $('#preloader').css({'display':'block'});
+                    },
                     success: function(response) {
+
+                        $('#preloader').css({'display':'none'});
+
                         if (response.success) {
                             $('#staticBackdrop').modal('show');
                         } else {
@@ -188,6 +196,7 @@
                             alert(
                                 "An error occurred. Please try again."
                             ); // Inform user about the error
+                            $('#preloader').css({'display':'none'});
                         }
                     },
                     error: function(error) {
@@ -195,39 +204,49 @@
                         alert(
                             "An unexpected error occurred. Please try again."
                         ); // Inform user about the error
+                        $('#preloader').css({'display':'none'});
                     }
                 });
             });
         });
     </script>
+     
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+     
+     <script>
+         let videoPreview = document.getElementById("video-preview");
+         let inputFileVideo = document.getElementById("input-fileVideo");
+         let profilePic = document.getElementById("profile-pic");
+         let inputFileImage = document.getElementById("input-file");
+     
+         function previewVideo(input) {
+             if (input.files && input.files[0]) {
+                 let file = input.files[0];
+                 if (file.type.startsWith("video/")) {
+                     videoPreview.src = URL.createObjectURL(file);
+                     videoPreview.onloadedmetadata = function() {
+                         URL.revokeObjectURL(videoPreview.src); // free up memory
+                         videoPreview.play();
+                     }
+                 } else {
+                     alert("الرجاء تحديد فيديو .");
+                     videoPreview.src = ""; // Clear the video source
+                 }
+             }
+         }
+     
+         function previewImage(input) {
+             if (input.files && input.files[0]) {
+                 profilePic.src = URL.createObjectURL(input.files[0]);
+                 let fancyboxLink = profilePic.closest('.fancybox').setAttribute('href', URL.createObjectURL(input.files[0]));
+                 Fancybox.bind("[data-fancybox]", {
+                     infinite: false
+                 });
+             }
+         }
+     </script>
 
-    <script>
-        let profilePic = document.getElementById("profile-pic");
-        let inputFile = document.getElementById("input-file");
-
-        inputFile.onchange = function() {
-            // Validate image file type (optional)
-            // You can add image type validation here if needed
-
-            // Display image preview
-            profilePic.src = URL.createObjectURL(inputFile.files[0]);
-        };
-
-        let videoPreview = document.getElementById("video-preview");
-        let inputFile2 = document.getElementById("input-fileVideo");
-
-        inputFile2.onchange = function() {
-            // Validate video file type
-            if (!inputFile2.files[0].type.match('video')) {
-                alert("الرجاء تحديد فيديو .");
-                return; // Prevent invalid file types from being displayed
-            }
-
-            // Display video preview and load the video for playback
-            videoPreview.src = URL.createObjectURL(input - fileVideo.files[0]);
-            videoPreview.load();
-        };
-    </script>
 </body>
 
 </html>

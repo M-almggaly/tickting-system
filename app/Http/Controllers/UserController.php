@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 
@@ -16,13 +16,21 @@ class UserController extends Controller
         return view('user.show-ticket', compact('ticket'));
     }
 
+    public function newTick()
+    {
+        return view('user.new-ticket');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
+    
     {
-        //
+        $departments = Department::all(); // Replace with your model name and query
+        return view('user.new-ticket', compact('departments'));
     }
+    
 
     /**
      * Store a newly created resource in storage.

@@ -8,6 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Dashboard - SB Admin</title>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.3.0/uicons-thin-straight/css/uicons-thin-straight.css'>
     <link rel='stylesheet'
@@ -23,36 +24,36 @@
     @include('admin.navber')
 
     <div id="layoutSidenav_content">
-        <main>
+        <main style="font-style: normal;">
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Dashboard</h1>
+                <h1 class="mt-4">الرئيسية</h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active">الرئيسية</li>
                 </ol>
                 <div class="row" style="display: flex; justify-content: center;    justify-content: space-between;">
                     <div class="col-xl-3 col-md-4">
-                        <div class="cards card bg-success text-white mb-4">
-                            <div class="card-body">عادية</div>
+                        <div class="cards card bg-danger text-white mb-4">
+                            <div class="card-body">مستعجلة</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="http://127.0.0.1:8000/admin/normal">عرض التفاصيل</a>
+                                <a class="small text-white stretched-link" href="{{ route('admin.Urgent')}}">عرض التفاصيل</a>
                                 <div class="small text-white"><i class="fas fa-angle-left"></i></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-4">
                         <div class="cards card bg-warning text-white mb-4">
-                            <div class="card-body">خطرة</div>
+                            <div class="card-body">متوسطة</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="http://127.0.0.1:8000/admin/danger">عرض التفاصيل</a>
+                                <a class="small text-white stretched-link" href="{{ route('admin.dangerous')}}">عرض التفاصيل</a>
                                 <div class="small text-white"><i class="fas fa-angle-left"></i></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-4">
-                        <div class="cards card bg-danger text-white mb-4">
-                            <div class="card-body"></div>
+                        <div class="cards card bg-success text-white mb-4">
+                            <div class="card-body">عادية</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="http://127.0.0.1:8000/admin/v-danger">عرض التفاصيل</a>
+                                <a class="small text-white stretched-link" href="{{ route('admin.normal')}}">عرض التفاصيل</a>
                                 <div class="small text-white"><i class="fas fa-angle-left"></i></div>
                             </div>
                         </div>
@@ -572,12 +573,8 @@
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
+                    <div class="text-muted"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
+                            style="max-width: 30%;"></div>
                 </div>
             </div>
         </footer>

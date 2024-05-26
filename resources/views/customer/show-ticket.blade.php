@@ -8,6 +8,10 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Show-Ticket</title>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="{{ url('css/style.css') }}" rel="stylesheet">
     <link rel='stylesheet'
@@ -20,11 +24,11 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Show Tickting</h1>
+                <h1 class="mt-4">عرض المشاكل</h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="{{ route('customer.create')}}">New Tickting</a>
+                    <li class="breadcrumb-item active">عرض المشاكل</li>
+                    <li class="breadcrumb-item">/ <a href="{{ route('customer.create')}}">أضافة مشكلة </a>
                     </li>
-                    <li class="breadcrumb-item active">Show Tickting</li>
                 </ol>
             </div>
                 <form action="" class="grob-ticket show-ticket"
@@ -33,8 +37,9 @@
                         <table>
                             <tr id="headeruser">
                                 <th>رقم المشكلة</th>
-                                <th>أسم المستخدم</th>
                                 <th>عنوان المشكلة</th>
+                                <th>نوع المشكلة</th>
+                                <th>حالة المشكلة</th>
                                 <th>وقت وتاريخ المشكلة</th>
                                 <th colspan="3">عرض التفاصيل</th>
 
@@ -43,14 +48,19 @@
                             @foreach ($ticket as $item)
                                 <tr id="popu">
                                     <td>{{ $i++ }}</td>
-                                    <td>{{ $item->user->name }}</td>
                                     <td>{{ $item->title }}</td>
+                                    <td>{{ $item->new_or_repeated }}</td>
+                                    <td>{{ $item->status }}</td>
                                     <td>{{ $item->created_at }}</td>
-                                    <td><button class="show-ticket show-modal" type="button" data-id="{{$item->id}}"
+                                    <td style="display: flex"><button class="show-ticket show-modal" type="button" data-id="{{$item->id}}"
                                         style="border-radius: 6px;border: 1px solid #08061c17;width: 70%;margin-left: 10px;"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="fi fi-rr-overview"></i> عرض
-                                    </button></td>
+                                        <i class="fi fi-br-edit"></i> تعديل
+                                    </button>
+                                    <button class="show-ticket" type="button" value=""
+                                    style="border-radius: 6px;border: 1px solid #08061c17;width: 70%;margin-left: 10px;"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                        class="fi fi-bs-trash"></i> حذف</button></td>
                                 </tr>
                             @endforeach
                         </table>
@@ -73,23 +83,20 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div style="direction: rtl;text-align: right" class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">عرض المشكلة</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin: 0"></button>
-                </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">أغلاق</button>
-                </div>
-            </div>
-        </div>
-    </div>
+   <!-- Modal -->
+   <div style="direction: rtl;text-align: right" class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+   aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title" id="staticBackdropLabel">عرض المشكلة</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin: 0"></button>
+           </div>
+           <div class="modal-body">
+           </div>
+       </div>
+   </div>
+</div>
     <script src="{{ url('tinymce/tinymce.min.js') }}"></script>
     <script src="{{ url('js-ticket/tinymce.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
@@ -109,16 +116,22 @@
 $('.show-modal').on('click', function(e) {
     const ticketId = $(this).data('id');
     $.ajax({
-        type: 'POST',
-        url: '{{ route("show.ticket") }}',
-        data: {
-            id: ticketId,
-            _token: '{{ csrf_token() }}'
-        },
-        success: function(data) {
-            $('.modal-body').html(data);
-        }
-    });
+    type: 'POST',
+    url: '{{ route("show.ticket") }}',
+    data: {
+        id: ticketId,
+        sever: 0,
+        _token: '{{ csrf_token() }}'
+    },
+    success: function(data) {
+        $('.modal-body').html(data);
+    },
+    error: function(xhr, status, error) {
+        console.error('AJAX error:', error);
+        console.error('Status:', status);
+        console.error('Response:', xhr.responseText);
+    }
+});
 });
     </script>
 </body>

@@ -28,9 +28,9 @@ class TicketController extends Controller
     public function showTicket(Request $request)
     {
         $ticketId = $request->input('id');
-        $ticket = Ticket::findOrFail($ticketId);
+        $ticket = Ticket::with('Department')->findOrFail($ticketId);
         // Fetch the ticket data and return it as a response
-        return view('customer.model-show-ticket', compact('ticket'))->render();
+        return view('customer.model-show-ticket', compact('ticket'));
     }
 
     /**
@@ -50,9 +50,9 @@ class TicketController extends Controller
         ]);
     
         if ($request->input('reparted') == 'on') {
-            $repeat = 'old';
+            $repeat = 'حدثت من قبل';
         } else {
-            $repeat = "new";
+            $repeat = "جديد";
         }
 
         $create = new Ticket;
@@ -101,10 +101,10 @@ class TicketController extends Controller
         }
         else{
             $department = new Department;
-            $department->id = "0";
             $department->name = strip_tags($request->input('deprartment'));
             $department->save();
-            $create->department = strip_tags($request->input('deprartment'));
+            $depid = Department::where('name', $request->input('deprartment'))->first();
+            $create->department = $depid->id;
         }
     
         if ($create->save()) {
@@ -133,9 +133,55 @@ class TicketController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ticket $ticket)
+    public function update(Request $request, $id)
     {
-        //
+        // Validate the form data
+        $request->validate([
+            'title' => 'required',
+            'summery' => 'required',
+            'build' => 'required',
+            'steps' => 'required',
+            'expected' => 'required',
+            'actual' => 'required',
+            'deprartment' => 'required',
+            'severe' => 'required'
+        ]);
+    
+        // Find the ticket by ID
+        $ticket = Ticket::findOrFail($id);
+    
+        // Update the ticket with the new data
+        $ticket->title = $request->input('title');
+        $ticket->summary = $request->input('summery');
+        $ticket->build_platform = $request->input('build');
+        $ticket->steps_reproduce = $request->input('steps');
+        $ticket->expected_result = $request->input('expected');
+        $ticket->actual_result = $request->input('actual');
+        $ticket->severity = $request->input('severe');
+        $ticket->support_documentation = $request->input('support');
+    
+        $ticket->user_id = 1;
+    
+        // Check if department already exists using first()
+        $department = Department::where('name', $request->input('deprartment'))->first();
+        if ($department) {
+            $ticket->department = $department->id;
+        } else {
+            $department = new Department;
+            $department->name = $request->input('deprartment');
+            $department->save();
+            $ticket->department = $department->id;
+        }
+    
+        $ticket->new_or_repeated = $request->has('reparted') ? 'حدثت من قبل' : 'جديدة';
+    
+        $ticket->save();
+    
+        if ($ticket->wasChanged()) {
+            return redirect()->route('user-show-ticket')->with('success', 'Ticket updated successfully.');
+        } else {
+            return back()->withInput()->withErrors($request->validate());
+        }
     }
 
     /**

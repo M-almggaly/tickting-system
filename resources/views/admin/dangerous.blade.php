@@ -20,7 +20,14 @@
 
 <body class="sb-nav-fixed">
     @include('admin.navber')
-    
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
+                        style="max-width: 30%;"></div>
+            </div>
+        </div>
+    </footer>
     <script src="{{ url('tinymce/tinymce.min.js') }}"></script>
     <script src="{{ url('js-ticket/tinymce.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">

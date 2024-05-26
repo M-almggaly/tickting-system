@@ -27,7 +27,7 @@ class Ticket extends Model
 
     public function department()
     {
-        return $this->belongsTo(Department::class); // Define the belongsTo relationship with Department
+        return $this->belongsTo(Department::class, 'department'); // Define the belongsTo relationship with Department
     }
 
     public function replies()
