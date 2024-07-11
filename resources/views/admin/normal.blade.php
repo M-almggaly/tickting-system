@@ -15,6 +15,7 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link href="{{ url('js-ticket/style.css') }}" rel="stylesheet">
     <link href="{{ url('css/style.css') }}" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -23,7 +24,13 @@
 <body class="sb-nav-fixed">
     @include('admin.navber')
     <div id="layoutSidenav_content">
-    <main style="font-style: normal;margin-right: 15rem;margin-left: 1rem;margin-top: 4rem;">
+    <main style="font-style: normal;margin-right: 15rem;margin-left: 1rem;">
+        <h1 class="mt-4"  style="font-family: 'Alexandria', sans-serif;font-size: 40px">عادية</h1>
+        <ol class="breadcrumb mb-4" style="font-family: 'Alexandria', sans-serif;font-size: 13px">
+            <li class="breadcrumb-item active"><a href="{{ route('admin.Urgent')}}" style="color: rgb(74 72 72 / 62%);outline-style: none;text-decoration: none"> المستعجلة / </a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.dangerous')}}" style="color: rgb(74 72 72 / 62%);outline-style: none;text-decoration: none" > المتوسطة </a></li>
+            <li class="breadcrumb-item active" style="color:#2c44cea9">/ عادية</li>
+        </ol>
         <div class="card mb-12">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>

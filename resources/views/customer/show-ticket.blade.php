@@ -48,7 +48,7 @@
                             </tr>
                             <?php $i=1?>
                             @foreach ($ticket as $item)
-                                <tr id="popu">
+                                <tr>
                                     <td>{{ $i++ }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->new_or_repeated }}</td>
@@ -122,7 +122,7 @@ $('.show-modal').on('click', function(e) {
     const ticketId = $(this).data('id');
     $.ajax({
     type: 'POST',
-    url: '{{ route("show.ticket") }}',
+    url: '{{ route("admin.index") }}',
     data: {
         id: ticketId,
         sever: 0,

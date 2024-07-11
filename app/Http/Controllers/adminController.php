@@ -54,8 +54,7 @@ class adminController extends Controller
      */
     public function createe()
     {
-        $departments = Department::all(); // Replace with your model name and query
-        return view('user.new-ticket', compact('departments'));
+        return view('login');
     }
 
     /**
@@ -77,9 +76,10 @@ class adminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $ticket = Ticket::find($id);
+        return view('admin.EditTicket', compact('ticket'));
     }
 
     /**

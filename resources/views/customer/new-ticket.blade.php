@@ -70,17 +70,6 @@
                                 </label>
                                 <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" name="img" class="form-control d-none" required onchange="previewImage(this)">
                             </div>
-                        
-                            <div class="w-50 ms-1">
-                                <label for="input-fileVideo" style="display: flex;align-items: center;flex-direction: column; background-image: url(/public/assets-ticket/img/svgexport-19.svg);">
-                                    <video id="video-preview" class="w-100" controls>
-                                        <source src="" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                   <div style="margin-top: 5px; border: 1px solid rgba(74, 74, 246, 0.603);border-radius: 4px">Upload Video</div>
-                                </label>
-                                <input type="file" id="input-fileVideo" name="videos" class="form-control d-none" required onchange="previewVideo(this)">
-                            </div>
                         </div>
 
                         <div class="form-floating">

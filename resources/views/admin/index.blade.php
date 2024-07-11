@@ -8,13 +8,19 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Admin</title>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.3.0/uicons-thin-straight/css/uicons-thin-straight.css'>
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-straight/css/uicons-bold-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
     <link href="{{ url('js-ticket/style.css') }}" rel="stylesheet">
     <link href="{{ url('css/style.css') }}" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -27,45 +33,55 @@
     <div id="layoutSidenav_content">
         <main style="font-style: normal;">
             <div class="container-fluid px-4">
-                <h1 class="mt-4">الرئيسية</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">الرئيسية</li>
-                </ol>
+                <h1 class="mt-4" style="font-family: 'Alexandria', sans-serif;margin-bottom: 3rem">الرئيسية</h1>
+                
                 <div class="row" style="display: flex; justify-content: center;    justify-content: space-between;">
-                    <div class="col-xl-3 col-md-4">
-                        <div class="cards card bg-danger text-white mb-4">
-                            <div class="card-body">مستعجلة</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="{{ route('admin.Urgent')}}">عرض التفاصيل</a>
-                                <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <div class="col-xl-3 col-md-4" style="width: 33%">
+                        <div class="cards card  text-white mb-4"
+                            style="background:#dc35462a;border: 1px solid #dc354654">
+                            <div class="card-body"
+                                style="color: #DC3545;font-size: 20px; font-family: 'Alexandria', sans-serif;">مستعجلة
                             </div>
+                            <a class="small text-white stretched-link d-flex justify-content-end align-items-center"
+                                style="margin: 7px; margin-left: 1rem" href="{{ route('admin.Urgent') }}"><img
+                                    src="{{ url('assets-ticket/img/Group 37.svg') }}" alt=""
+                                    style="max-width: 13%"></a>
+
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-4">
-                        <div class="cards card bg-warning text-white mb-4">
-                            <div class="card-body">متوسطة</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="{{ route('admin.dangerous')}}">عرض التفاصيل</a>
-                                <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <div class="col-xl-3 col-md-4" style="width: 33%">
+                        <div class="cards card  text-white mb-4"
+                            style="background: #ffc82328;border: 1px solid #e1b22652">
+                            <div class="card-body"
+                                style="color: #E1B226;font-size: 20px; font-family: 'Alexandria', sans-serif;">متوسطة
                             </div>
+                            <a class="small text-white stretched-link d-flex justify-content-end align-items-center"
+                                style="margin: 7px; margin-left: 1rem" href="{{ route('admin.dangerous') }}"><img
+                                    src="{{ url('assets-ticket/img/Group 36.svg') }}" alt=""
+                                    style="max-width: 13%"></a>
+
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-4">
-                        <div class="cards card bg-success text-white mb-4">
-                            <div class="card-body">عادية</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="{{ route('admin.normal')}}">عرض التفاصيل</a>
-                                <div class="small text-white"><i class="fas fa-angle-left"></i></div>
-                            </div>
+                    <div class="col-xl-3 col-md-4" style="width: 33%">
+                        <div class="cards card  text-white mb-4"
+                        style="background:#0b2fff34;border: 1px solid #2142ff4b">
+                        <div class="card-body"
+                            style="color: #2C45CE;font-size: 20px; font-family: 'Alexandria', sans-serif;">عادية
                         </div>
+                        <a class="small text-white stretched-link d-flex justify-content-end align-items-center"
+                            style="margin: 7px; margin-left: 1rem" href="{{ route('admin.normal') }}"><img
+                                src="{{ url('assets-ticket/img/Group 35.svg') }}" alt=""
+                                style="max-width: 13%"></a>
+
+                    </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="card mb-4">
-                            <div class="card-header">
+                            <div class="card-header" style="font-family: 'Alexandria', sans-serif;font-size: 13px">
                                 <i class="fas fa-chart-area me-1"></i>
-                               الحصائيات
+                                الحصائيات
                             </div>
                             <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas>
                             </div>
@@ -73,127 +89,99 @@
                     </div>
                     <div class="col-xl-6">
                         <div class="card mb-4">
-                            <div class="card-header">
+                            <div class="card-header" style="font-family: 'Alexandria', sans-serif;font-size: 13px">
                                 <i class="fas fa-chart-bar me-1"></i>
-                               الحصائيات
+                                الحصائيات
                             </div>
                             <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                         </div>
                     </div>
                 </div>
-                 <form action="" class="show-ticket">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                    جدول المشكلات
-                    </div>
-                    <div class="card-body" >
-                        <table id="datatablesSimple">
-                            <thead>
-                                <tr>
-                                    <th class="ts">رقم </th>
-                                    <th class="ts"> أسم المستخدم</th>
-                                    <th class="ts">عنوان </th>
-                                    <th class="ts">ونوع </th>
-                                    <th class="ts">أولوية </th>
-                                    <th class="ts">حالة </th>
-                                    <th class="ts">وقت وتاريخ </th>
-                                    <th class="ts" colspan="3">عرض التفاصيل</th>
-                                    
-                                </tr>
-                            </thead>
+                <form class="show-ticket">
+                    <div class="card mb-4">
+                        <div class="card-header" style="font-family: 'Alexandria', sans-serif;font-size: 13px">
+                            <i class="fas fa-table me-1"></i>
+                            جدول المشكلات
+                        </div>
+                        @if (session('success'))
+                            <alert class="px-2 py-3 mb-4"
+                                style="background-color: rgb(0 128 0 / 32%);border-right: 8px solid rgb(9, 97, 9);color: rgb(19, 77, 19);font-weight: bold;margin-right: 0rem;">
+                                {{ session('success') }}
+                            </alert>
+                        @endif
+                        <div class="card-body" style="font-family: 'Alexandria', sans-serif;font-size: 13px">
+                            <table id="datatablesSimple" style="font-family: 'Alexandria', sans-serif;font-size: 12px">
+                                <thead>
+                                    <tr>
+                                        <th class="ts">رقم </th>
+                                        <th class="ts"> أسم المستخدم</th>
+                                        <th class="ts">عنوان </th>
+                                        <th class="ts">ونوع </th>
+                                        <th class="ts">أولوية </th>
+                                        <th class="ts">حالة </th>
+                                        <th class="ts">وقت وتاريخ </th>
+                                        <th class="ts" colspan="3">عرض التفاصيل</th>
 
-                            <tbody>
-                              
-                                @foreach ($ticket as $show)
-                                <tr id="popu">
-                                    <td>{{ $show->id }}</td>
-                                    <td>{{ $show->user->name }}</td>
-                                    <td>{{ $show->title }}</td>
-                                    <td>{{ $show->new_or_repeated }}</td>
-                                    <td>{{ $show->severity }}</td>
-                                    <td>{{ $show->status }}</td>
-                                    <td>{{ $show->created_at }}</td>
-                                    <td style="display: flex; gap: 10px;"><button class="show-ticket show-modal" type="button" data-id="{{ $show->id }}"
-                                        style="border-radius: 6px;border: 1px solid #08061c17;width: 100%;font-size: 15px"
-                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="fi fi-br-edit"></i> تعديل</button>
-                                    <button class="show-ticket" type="button" value=""
-                                    style="border-radius: 6px;border: 1px solid #08061c17;width: 100%; font-size: 15px"
-                                    onclick="deleteTicket({{ $show->id }})">
-                                    <i class="fi fi-bs-trash"></i> حذف</button></td>
-                                </tr>
-                                @endforeach
-                                
-                            </tbody>
-                        </table>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach ($ticket as $item)
+                                        <tr>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->user->name }}</td>
+                                            <td>{{ $item->title }}</td>
+                                            <td>{{ $item->new_or_repeated }}</td>
+                                            <td>{{ $item->severity }}</td>
+                                            <td>{{ $item->status }}</td>
+                                            <td>{{ $item->created_at }}</td>
+                                            <td style="display: flex; gap: 6px">
+                                                <button class=""
+                                                    style="border-radius: 6px;border: 1px solid #08061c17;width: 100%; font-size: 13px"
+                                                    type="button">
+                                                    <a href="/admin/edit/{{ $item->id }}"
+                                                        style="outline-style: none;color: black;text-decoration: none;">
+                                                        <i class="fi fi-br-edit"></i> تعديل
+                                                    </a>
+                                                </button>
+                                                <button class="show-ticket" type="button" value=""
+                                                    style="border-radius: 6px;border: 1px solid #08061c17;width: 100%; font-size: 13px"
+                                                    onclick="deleteTicket({{ $item->id }})">
+                                                    <i class="fi fi-bs-trash"></i> حذف</button>
+                                            </td>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
             </div>
-        </form>
+            </form>
         </main>
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
+                <div class="d-flex align-items-center justify-content-center small">
+                    <div class="text-muted" style="display: flex;justify-content: center;"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
                             style="max-width: 30%;"></div>
                 </div>
             </div>
         </footer>
     </div>
-    </div>
-     <!-- Modal -->
-     <div style="direction: rtl;text-align: right" class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-     <div class="modal-dialog">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="staticBackdropLabel">عرض المشكلة</h5>
-                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin: 0"></button>
-             </div>
-             <div class="modal-body">
-             </div>
-         </div>
-     </div>
- </div>
-    <script src="{{ url('tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ url('js-ticket/tinymce.js') }}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
     <script src="{{ url('js-ticket/scripts.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="{{ url('assets-ticket/demo/chart-area-demo.js') }}"></script>
     <script src="{{ url('assets-ticket/demo/chart-bar-demo.js') }}"></script>
-    <script src="{{ url('js-ticket/simple-datatables.min.js') }}"  crossorigin="anonymous"></script>
+    <script src="{{ url('js-ticket/simple-datatables.min.js') }}" crossorigin="anonymous"></script>
     <script src="{{ url('js-ticket/datatables-simple-demo.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $('.show-modal').on('click', function(e) {
-            alert($(this).data('id'));
-            const ticketId = $(this).data('id');
-            $.ajax({
-            type: 'POST',
-            url: '{{ route("show.ticket") }}',
-            data: {
-                id: ticketId,
-                sever: 1,
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(data) {
-                $('.modal-body').html(data);
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX error:', error);
-                console.error('Status:', status);
-                console.error('Response:', xhr.responseText);
-            }
-        });
-        });</script>
-        <script>
-        
         function deleteTicket(id) {
             if (confirm('سوف يتم حذف  المشكلة نهائيا" ؟')) {
                 $.ajax({
@@ -213,7 +201,7 @@
                 });
             }
         }
-            </script>
+    </script>
 </body>
 
 </html>

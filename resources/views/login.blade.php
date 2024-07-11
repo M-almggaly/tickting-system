@@ -7,12 +7,12 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>login</title>
-    <link href="{{ url('login/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ url('login/bootstrap/js/jquery-3.6.1.min.js') }}" rel="stylesheet">
-    <link href="{{ url('login/bootstrap/js/bootstrap.js') }}" rel="stylesheet">
-    <link href="{{ url('login/bootstrap/js/popper.min.js') }}">
-    <link rel="stylesheet" href="{{ url('login/fontawesome/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ url('login/style.css') }}">
+    <link href="{{ url('lgindex/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url('lgindex/bootstrap/js/jquery-3.6.1.min.js') }}" rel="stylesheet">
+    <link href="{{ url('lgindex/bootstrap/js/bootstrap.js') }}" rel="stylesheet">
+    <link href="{{ url('lgindex/bootstrap/js/popper.min.js') }}">
+    <link rel="stylesheet" href="{{ url('lgindex/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url('lgindex/style.css') }}">
 </head>
 
 <body>
@@ -20,15 +20,15 @@
         <div class="container">
             <div class="login">
                 <div class="header">
-                    <img src="{{ url('login/img/Group 34.svg') }}" style="width: 27% !important">
+                    <img src="{{ url('lgindex/img/Group 34.svg') }}" style="width: 27% !important">
                 </div>
                 <div class="main">
                     <form method="" action="">
                         @csrf
                         <span>
                             <i class="fa fa-user" id="icon"></i>
-                            <input name="username" id="username" required>
-                            <label class="user">Username</label>
+                            <input type="email" name="username" id="username" required>
+                            <label class="user">Email</label>
                         </span><br>
                         <span>
                             <i class="fa fa-lock" id="icon"></i>
@@ -43,9 +43,9 @@
             </div>
         </div>
     </div>
-    <script src="{{ url('/login/particles.js') }}"></script>
-    <script src="{{ url('login/app.js') }}"></script>
-    <script src="{{ url('login/script.js') }}"></script>
+    <script src="{{ url('/lgindex/particles.js') }}"></script>
+    <script src="{{ url('lgindex/app.js') }}"></script>
+    <script src="{{ url('lgindex/script.js') }}"></script>
 </body>
 
 </html>

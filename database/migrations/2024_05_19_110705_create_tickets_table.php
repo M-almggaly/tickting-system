@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned()->index();
             $table->string('title');
             $table->text('summary');
-            $table->string('build_platform');
+            $table->text('build_platform');
             $table->text('steps_reproduce');
             $table->text('expected_result');
             $table->text('actual_result');
