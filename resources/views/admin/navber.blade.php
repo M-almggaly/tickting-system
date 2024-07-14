@@ -3,7 +3,7 @@
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-straight/css/uicons-regular-straight.css'>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html" style="font-family: 'Alexandria', sans-serif;">نظام الدعم الفني</a>
+    <a class="navbar-brand ps-3" href="{{ route('admin') }}" style="width: 15% !important;"><img src="{{ url('lgindex/img/logo-hedar.svg') }}" alt="..." style="max-width: 90%;margin-top: 1rem;margin-bottom: 1rem"></a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
     <!-- Navbar-->
@@ -18,8 +18,7 @@
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
-                <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Core</div>
+                <div class="nav" style="margin-top: 6rem">
                     <a class="nav-link" href="{{ route('admin') }}" style="font-family: 'Alexandria', sans-serif;font-size: 14px">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         الرئيسية
@@ -51,18 +50,18 @@
                         </nav>
                     </div>
                     <div class="sb-sidenav-menu-heading"  style="font-family: 'Alexandria', sans-serif;font-size: 11px">الاضافات</div>
-                    <a class="nav-link" href="{{ route('admin.charts')}}"  style="font-family: 'Alexandria', sans-serif;font-size: 14px;font-style: normal">
+                    {{-- <a class="nav-link" href="{{ route('admin.charts')}}"  style="font-family: 'Alexandria', sans-serif;font-size: 14px;font-style: normal">
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         الحصائيات
-                    </a>
+                    </a> --}}
                     <a class="nav-link" href="{{ route('admin.tables')}}"  style="font-family: 'Alexandria', sans-serif;font-size: 14px;font-style: normal">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         جدول المشكلات
                     </a>
-                    <a class="nav-link" href="{{ route('admin.nwe-reply')}}" style="font-family: 'Alexandria', sans-serif;font-size: 14px;font-style: normal">
+                    {{-- <a class="nav-link" href="{{ route('admin.nwe-reply')}}" style="font-family: 'Alexandria', sans-serif;font-size: 14px;font-style: normal">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                        الردود على المشاكل
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         

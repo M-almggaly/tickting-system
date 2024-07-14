@@ -8,6 +8,10 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Admin-Dangerous-Ticket</title>
+     {{-- شعار الصفحه --}}
+     <link href="{{ url('lgindex/img/Vector.svg') }}" rel="icon">
+     <link href="{{ url('lgindex/img/Vector.svg') }}" rel="apple-touch-icon"> 
+     
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.3.0/uicons-thin-straight/css/uicons-thin-straight.css'>
     <link rel='stylesheet'
@@ -32,12 +36,12 @@
                 <li class="breadcrumb-item active"><a href="{{ route('admin.normal')}}" style="color: rgb(74 72 72 / 62%);outline-style: none;text-decoration: none">/ عادية</a></li>
             </ol>
         <div class="card mb-12">
-            <div class="card-header">
+            <div class="card-header" style="font-family: 'Alexandria', sans-serif;font-size: 13px">
                 <i class="fas fa-table me-1"></i>
             جدول المشكلات
             </div>
-        <div class="card-body">
-            <table id="datatablesSimple">
+        <div class="card-body" style="font-family: 'Alexandria', sans-serif;font-size: 13px">
+            <table id="datatablesSimple" style="font-family: 'Alexandria', sans-serif;font-size: 12px">
                 <thead>
                     <tr>
                         <th class="ts">رقم </th>
@@ -53,21 +57,25 @@
                 </thead>
 
                 <tbody>
-                    <?php $i = 1; ?>
                     @foreach ($ticket as $show)
                     @if ($show->severity == 'متوسطة')
                         <tr id="popu">
-                            <td>{{ $i++ }}</td>
+                            <td>{{ $show->id }}</td>
                             <td>{{ $show->user->name }}</td>
                             <td>{{ $show->title }}</td>
                             <td>{{ $show->new_or_repeated }}</td>
                             <td>{{ $show->severity }}</td>
                             <td>{{ $show->status }}</td>
                             <td>{{ $show->created_at }}</td>
-                            <td style="display: flex; gap: 10px;"><button class="show-ticket show-modal" type="button" data-id="{{ $show->id }}"
-                                style="border-radius: 6px;border: 1px solid #08061c17;width: 100%;font-size: 15px"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fi fi-br-edit"></i> تعديل</button>
+                            <td style="display: flex; gap: 10px;">
+                                 <button class=""
+                                style="border-radius: 6px;border: 1px solid #08061c17;width: 100%; font-size: 13px"
+                                type="button">
+                                <a href="/admin/edit/{{ $show->id }}"
+                                    style="outline-style: none;color: black;text-decoration: none;">
+                                    <i class="fi fi-br-edit"></i> تعديل
+                                </a>
+                            </button>
                             <button class="show-ticket" type="button" value=""
                             style="border-radius: 6px;border: 1px solid #08061c17;width: 100%; font-size: 15px"
                             onclick="deleteTicket({{ $show->id }})">
@@ -85,26 +93,13 @@
 
     <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid px-4">
-            <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
+            <div class="d-flex align-items-center justify-content-center small">
+                <div class="text-muted" style="display: flex;justify-content: center;"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
                         style="max-width: 30%;"></div>
             </div>
         </div>
-    </footer></div>
-       <!-- Modal -->
-       <div style="direction: rtl;text-align: right" class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-       aria-labelledby="staticBackdropLabel" aria-hidden="true">
-       <div class="modal-dialog">
-           <div class="modal-content">
-               <div class="modal-header">
-                   <h5 class="modal-title" id="staticBackdropLabel">عرض المشكلة</h5>
-                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin: 0"></button>
-               </div>
-               <div class="modal-body">
-               </div>
-           </div>
-       </div>
-   </div>
+    </footer>
+</div>
     <script src="{{ url('tinymce/tinymce.min.js') }}"></script>
     <script src="{{ url('js-ticket/tinymce.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">

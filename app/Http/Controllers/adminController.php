@@ -54,7 +54,7 @@ class adminController extends Controller
      */
     public function createe()
     {
-        return view('login');
+        return view('auth.login');
     }
 
     /**
@@ -79,7 +79,12 @@ class adminController extends Controller
     public function edit($id)
     {
         $ticket = Ticket::find($id);
-        return view('admin.EditTicket', compact('ticket'));
+
+        $pic = explode(',',$ticket->image);
+        $pic1 = $pic[0];
+        $pic2 = $pic[1];
+       
+        return view('admin.EditTicket', compact('ticket','pic1','pic2'));
     }
 
     /**

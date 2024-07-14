@@ -61,14 +61,24 @@
                         </div>
                         <div class="form-floating d-flex justify-content-between">
                             <div class="w-50 me-1">
-                                <label for="input-file" style="display: flex;align-items: center;flex-direction: column;">
+                                <label for="input-file1" style="display: flex;align-items: center;flex-direction: column;">
                                     <a href="#" class="fancybox" data-fancybox="gallery">
-                                        <img src="{{ asset('assets-ticket/img/svgexport-17 (1).svg') }}" id="profile-pic" class="rounded me-2" alt="..." style="    width: 89%;
-                                        height: 25vh;">
+                                        <img src="{{ asset('assets-ticket/img/svgexport-17 (1).svg') }}" id="profile-pic1" class="rounded me-2" alt="..." style="width: 89%; height: 25vh;">
                                     </a>
-                                  <div style="margin-top: 5px; border: 1px solid rgba(74, 74, 246, 0.603); border-radius: 4px">Upload Image</div>
+                                    <div style="margin-top: 5px; border: 1px solid rgba(74, 74, 246, 0.603); border-radius: 4px">Upload Image 1</div>
                                 </label>
-                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" name="img" class="form-control d-none" required onchange="previewImage(this)">
+                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file1" name="img" class="form-control d-none" required onchange="previewImage1(this)">
+                            </div>
+                        </div>
+                        <div class="form-floating d-flex justify-content-between">
+                            <div class="w-50 me-1">
+                                <label for="input-file2" style="display: flex;align-items: center;flex-direction: column;">
+                                    <a href="#" class="fancybox" data-fancybox="gallery">
+                                        <img src="{{ asset('assets-ticket/img/svgexport-17 (1).svg') }}" id="profile-pic2" class="rounded me-2" alt="..." style="width: 89%; height: 25vh;">
+                                    </a>
+                                    <div style="margin-top: 5px; border: 1px solid rgba(74, 74, 246, 0.603); border-radius: 4px">Upload Image 2</div>
+                                </label>
+                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file2" name="img2" class="form-control d-none" onchange="previewImage2(this)">
                             </div>
                         </div>
 
@@ -204,37 +214,31 @@
      <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
      
      <script>
-         let videoPreview = document.getElementById("video-preview");
-         let inputFileVideo = document.getElementById("input-fileVideo");
-         let profilePic = document.getElementById("profile-pic");
-         let inputFileImage = document.getElementById("input-file");
-     
-         function previewVideo(input) {
-             if (input.files && input.files[0]) {
-                 let file = input.files[0];
-                 if (file.type.startsWith("video/")) {
-                     videoPreview.src = URL.createObjectURL(file);
-                     videoPreview.onloadedmetadata = function() {
-                         URL.revokeObjectURL(videoPreview.src); // free up memory
-                         videoPreview.play();
-                     }
-                 } else {
-                     alert("الرجاء تحديد فيديو .");
-                     videoPreview.src = ""; // Clear the video source
-                 }
-             }
-         }
-     
-         function previewImage(input) {
-             if (input.files && input.files[0]) {
-                 profilePic.src = URL.createObjectURL(input.files[0]);
-                 let fancyboxLink = profilePic.closest('.fancybox').setAttribute('href', URL.createObjectURL(input.files[0]));
-                 Fancybox.bind("[data-fancybox]", {
-                     infinite: false
-                 });
-             }
-         }
-     </script>
+        let profilePic1 = document.getElementById("profile-pic1");
+        let profilePic2 = document.getElementById("profile-pic2");
+        let inputFileImage1 = document.getElementById("input-file1");
+        let inputFileImage2 = document.getElementById("input-file2");
+    
+        function previewImage1(input) {
+            if (input.files && input.files[0]) {
+                profilePic1.src = URL.createObjectURL(input.files[0]);
+                let fancyboxLink = profilePic1.closest('.fancybox').setAttribute('href', URL.createObjectURL(input.files[0]));
+                Fancybox.bind("[data-fancybox]", {
+                    infinite: false
+                });
+            }
+        }
+    
+        function previewImage2(input) {
+            if (input.files && input.files[0]) {
+                profilePic2.src = URL.createObjectURL(input.files[0]);
+                let fancyboxLink = profilePic2.closest('.fancybox').setAttribute('href', URL.createObjectURL(input.files[0]));
+                Fancybox.bind("[data-fancybox]", {
+                    infinite: false
+                });
+            }
+        }
+    </script>
 
 </body>
 

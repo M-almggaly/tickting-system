@@ -29,11 +29,10 @@
         </div>
         <button type="submit">Submit</button>
     </form>
-   
     <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid px-4">
-            <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
+            <div class="d-flex align-items-center justify-content-center small">
+                <div class="text-muted" style="display: flex;justify-content: center;"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
                         style="max-width: 30%;"></div>
             </div>
         </div>

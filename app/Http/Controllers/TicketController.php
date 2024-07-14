@@ -66,7 +66,7 @@ class TicketController extends Controller
         $create->support_documentation = strip_tags($request->input('support'));
 
         $image = $request->file('img');
-        $video = $request->file('videos');
+        $img2 = $request->file('img2');
 
 
         if($image != ""){
@@ -75,17 +75,17 @@ class TicketController extends Controller
             // Get the file extension
             $extensionimg = $image->getClientOriginalExtension();
             // Generate a unique filename using the original filename and extension
-            $imageName = $originalFilenameimg . '.' . $extensionimg;
+            $imageName = rand(1,99999).'_'.ltrim($originalFilenameimg) . '.' . $extensionimg;
             $image->storeAs('/public/assets-ticket', $imageName); // Adjust path as needed
-            if($video != ""){
+            if($img2 != ""){
             // Get the original filename without extension
-            $originalFilenamevid = pathinfo($video->getClientOriginalName(), PATHINFO_FILENAME);
+            $originalFilenamevid = pathinfo($img2->getClientOriginalName(), PATHINFO_FILENAME);
             // Get the file extension
-            $extensionvid = $video->getClientOriginalExtension();
+            $extensionvid = $img2->getClientOriginalExtension();
             // Generate a unique filename using the original filename and extension
-            $videoname = $originalFilenamevid . '.' . $extensionvid;
-            $video->storeAs('assets-ticket', $videoname); // Adjust path as needed
-            $Name = $imageName . " , " . $videoname;
+            $img2name = rand(1,99999).'_'.ltrim($originalFilenamevid) . '.' . $extensionvid;
+            $img2->storeAs('/public/assets-ticket', $img2name); // Adjust path as needed
+            $Name = $imageName . "," . $img2name;
             $create->image = $Name;  // Store only the generated filename
             }
             else{

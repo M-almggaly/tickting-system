@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\adminController;
 
 
-Route::get('/login/index',[adminController:: class,'createe']);
+
 Route::get('/ticket/reply', [ReplyController::class, 'index'])->name('admin.nwe-reply');
 Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])->middleware(['auth', 'verified'])->name('tickets.destroy');
 Route::get('/',[adminController:: class,'index'])->middleware(['auth', 'verified'])->name('admin');

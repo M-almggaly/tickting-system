@@ -8,6 +8,9 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Admin</title>
+    {{-- شعار الصفحه --}}
+    <link href="{{ url('lgindex/img/Vector.svg') }}" rel="icon">
+    <link href="{{ url('lgindex/img/Vector.svg') }}" rel="apple-touch-icon"> 
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet'

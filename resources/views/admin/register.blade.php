@@ -8,6 +8,10 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Admin</title>
+     {{-- شعار الصفحه --}}
+     <link href="{{ url('lgindex/img/Vector.svg') }}" rel="icon">
+     <link href="{{ url('lgindex/img/Vector.svg') }}" rel="apple-touch-icon"> 
+     
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.3.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet'
@@ -86,14 +90,14 @@
                 </x-guest-layout>
             
         </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
-                                    style="max-width: 30%;"></div>
-                        </div>
-                    </div>
-                </footer>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-center small">
+                    <div class="text-muted" style="display: flex;justify-content: center;"><img src="{{ url('assets-ticket/img/Frame.svg') }}" alt=""
+                            style="max-width: 30%;"></div>
+                </div>
+            </div>
+        </footer>
     </div>
                 <script src="{{ url('tinymce/tinymce.min.js') }}"></script>
                 <script src="{{ url('js-ticket/tinymce.js') }}"></script>
