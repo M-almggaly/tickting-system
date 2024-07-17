@@ -67,18 +67,7 @@
                                     </a>
                                     <div style="margin-top: 5px; border: 1px solid rgba(74, 74, 246, 0.603); border-radius: 4px">Upload Image 1</div>
                                 </label>
-                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file1" name="img" class="form-control d-none" required onchange="previewImage1(this)">
-                            </div>
-                        </div>
-                        <div class="form-floating d-flex justify-content-between">
-                            <div class="w-50 me-1">
-                                <label for="input-file2" style="display: flex;align-items: center;flex-direction: column;">
-                                    <a href="#" class="fancybox" data-fancybox="gallery">
-                                        <img src="{{ asset('assets-ticket/img/svgexport-17 (1).svg') }}" id="profile-pic2" class="rounded me-2" alt="..." style="width: 89%; height: 25vh;">
-                                    </a>
-                                    <div style="margin-top: 5px; border: 1px solid rgba(74, 74, 246, 0.603); border-radius: 4px">Upload Image 2</div>
-                                </label>
-                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file2" name="img2" class="form-control d-none" onchange="previewImage2(this)">
+                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file1" name="img[]" multiple class="form-control d-none" required onchange="previewImage1(this)">
                             </div>
                         </div>
 

@@ -10,6 +10,9 @@
      {{-- شعار الصفحه --}}
      <link href="{{ url('lgindex/img/Vector.svg') }}" rel="icon">
      <link href="{{ url('lgindex/img/Vector.svg') }}" rel="apple-touch-icon"> 
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap" rel="stylesheet">
      
     <link href="{{ url('lgindex/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ url('lgindex/bootstrap/js/jquery-3.6.1.min.js') }}" rel="stylesheet">
@@ -23,7 +26,7 @@
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    <div id="particles-js">
+    <div id="particles-js" style="font-family: 'Alexandria', sans-serif">
         <div class="container">
             <div class="login">
                 <div class="header">
@@ -35,27 +38,25 @@
         <!-- Email Address -->
         <span>
             <i class="fa fa-user" id="icon"></i>
-            <input type="email" name="email" id="email" required autofocus autocomplete="username">
-            <label class="user" value="__('Email')">Email</label>
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <input type="email" name="email" id="email" required autofocus autocomplete="username" placeholder="Enter your Email" style="color: black">
+            <x-input-error :messages="$errors->get('email')" class="mt-2" style="color: #fff" />
         </span><br>
              <!-- Password -->
         <span>
             <i class="fa fa-lock" id="icon"></i>
-            <input type="password" name="password" id="password" required autocomplete="current-password">
-            <label class="user" value="__('Password')">password</label>
+            <input type="password" name="password" id="password" required autocomplete="current-password" placeholder="Enter your password">
             <i class="fa fa-eye" id="show-password"></i>
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input-error :messages="$errors->get('password')" class="mt-2" style="color: #fff"/>
         </span><br>
 
         <div class="flex items-center justify-end">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;" href="{{ route('password.request') }}" style="color: #fff;font-family: 'Alexandria', sans-serif">
+                    {{ __('نسيت كلمة السر؟') }}
                 </a>
             @endif
 
-            <button type="submit" name="submit"> {{ __('Log in') }}</button>
+            <button type="submit" name="submit"> {{ __('تسجيل الدخول') }}</button>
         </div>
     </form>
                 </div>
@@ -67,22 +68,3 @@
 <script src="{{ url('lgindex/script.js') }}"></script>
 </body>
 </html>
-{{-- 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div> --}}

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Department;
 use Illuminate\Http\Request;
-use App\Models\Ticket;
+use App\Models\{Ticket, User};
 class adminController extends Controller
 {
     /**
@@ -13,6 +13,11 @@ class adminController extends Controller
     {
         $ticket = Ticket::all(); 
         return view('admin.index', compact('ticket'));
+    }
+    public function showUser()
+    {
+        $users = User::where('visable', 1)->get();
+        return view('admin.showUser', compact( 'users'));
     }
 
     public function dangerous()
@@ -46,7 +51,7 @@ class adminController extends Controller
 
     public function useradd()
     {
-        return view('admin.register');
+        return view('auth.register');
     }
 
     /**
@@ -57,12 +62,13 @@ class adminController extends Controller
         return view('auth.login');
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -79,13 +85,16 @@ class adminController extends Controller
     public function edit($id)
     {
         $ticket = Ticket::find($id);
-
-        $pic = explode(',',$ticket->image);
-        $pic1 = $pic[0];
-        $pic2 = $pic[1];
-       
-        return view('admin.EditTicket', compact('ticket','pic1','pic2'));
+    
+        if (!$ticket) {
+            return redirect()->back()->with('error', 'Ticket not found');
+        }
+    
+        $imagePaths = explode(',', $ticket->image);
+    
+        return view('admin.EditTicket', compact('ticket', 'imagePaths'));
     }
+    
 
     /**
      * Update the specified resource in storage.

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('department');
             $table->string('image');
             $table->string('new_or_repeated')->default('1');
-            $table->integer('severity');
+            $table->string('severity')->default('لم يحدد');
             $table->string('status')->default('قيد الانتظار');
             $table->timestamps();
             $table->foreign('department')->references('id')->on('departments');

@@ -38,7 +38,7 @@
             <div class="container-fluid px-4">
                 <h1 class="mt-4" style="font-family: 'Alexandria', sans-serif;margin-bottom: 3rem">الرئيسية</h1>
                 
-                <div class="row" style="display: flex; justify-content: center;    justify-content: space-between;">
+                <div class="row">
                     <div class="col-xl-3 col-md-4" style="width: 33%">
                         <div class="cards card  text-white mb-4"
                             style="background:#dc35462a;border: 1px solid #dc354654">

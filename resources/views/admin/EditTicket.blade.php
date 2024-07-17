@@ -111,32 +111,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="" style="margin-top: 2rem; background: #F4F4F4; border-radius: 9px;text-align: center;padding: 1rem">
-                                <label for="input-file"
-                                    style="display: flex;align-items: center;flex-direction: column;">
-                                    <a href="{{ asset('/storage/assets-ticket/' . $pic1) }}" class="fancybox"
-                                        data-fancybox="gallery">
-                                        <img src="{{ asset('/storage/assets-ticket/' . $pic1) }}"
-                                            id="profile-pic" alt="..."
-                                            style="width: 100%;border-radius: 9px">
+                            <div class="image-container" style="margin-top: 2rem; background: #F4F4F4; border-radius: 9px; text-align: center; padding: 1rem;display: flex;gap: 14px;flex-direction: column;">
+                                @foreach ($imagePaths as $imagePath)
+                                    <a href="{{ asset('/storage/assets-ticket/' . $imagePath) }}" class="fancybox" data-fancybox="gallery">
+                                        <img src="{{ asset('/storage/assets-ticket/' . $imagePath) }}" alt="Ticket Image" style="width: 100%; border-radius: 9px;">
                                     </a>
-                                </label>
-                                <input accept="image/jpeg, image/png, image/jpg" id="input-file"
-                                    name="img" class="form-control d-none" onchange="previewImage(this)">
-                        
-                                    <label for="input-file"
-                                    style="display: flex;align-items: center;flex-direction: column; margin-top: 1rem">
-                                    <a href="{{ asset('/storage/assets-ticket/' . $pic2) }}" class="fancybox"
-                                        data-fancybox="gallery">
-                                        <img src="{{ asset('/storage/assets-ticket/' . $pic2) }}"
-                                            id="profile-pic" alt="..."
-                                            style="width: 100%;border-radius: 9px">
-                                    </a>
-                                </label>
-                                <input accept="image/jpeg, image/png, image/jpg" id="input-file"
-                                    name="img" class="form-control d-none" onchange="previewImage(this)">
-                                
+                                @endforeach
                             </div>
+                            
                             <h6 style="color: rgba(0, 0, 0, 0.26);margin-top: 1rem;text-align: center">صورة للمشكلة
                             </h6>
 
@@ -174,7 +156,7 @@
                             <button type="button" class="btn btn-secondary"
                                 style="margin-bottom: 3rem;border-radius: 4px;width: 15%;background: #F4F4F4;color: black;border: none" onclick="navigateToSecondPage()">الغاء</button>
                         <button type="submit" class="btn btn-secondary"
-                            style="margin-bottom: 3rem;background: #0275D8;border:none;border-radius: 4px;width: 12%;">حفظ</button>
+                            style="margin-bottom: 3rem;background: #0275D8;border:none;border-radius: 4px;width: 15%;">حفظ</button>
                       
                     </div>
 

@@ -54,10 +54,9 @@
                     </thead>
     
                     <tbody>
-                        <?php $i = 1; ?>
                         @foreach ($ticket as $show)
                             <tr id="popu">
-                                <td>{{ $i++ }}</td>
+                                <td>{{ $show->id }}</td>
                                 <td>{{ $show->user->name }}</td>
                                 <td>{{ $show->title }}</td>
                                 <td>{{ $show->new_or_repeated }}</td>
@@ -74,7 +73,7 @@
                                     </a>
                                 </button>
                                 <button class="show-ticket" type="button" value=""
-                                style="border-radius: 6px;border: 1px solid #08061c17;width: 100%; font-size: 15px"
+                                style="border-radius: 6px;border: 1px solid #08061c17;width: 100%; font-size: 13px"
                                 onclick="deleteTicket({{ $show->id }})">
                                 <i class="fi fi-bs-trash"></i> حذف</button>
                             </td>
@@ -106,5 +105,27 @@
     <script src="{{ url('assets-ticket/demo/chart-bar-demo.js') }}"></script>
     <script src="{{ url('js-ticket/simple-datatables.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ url('js-ticket/datatables-simple-demo.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function deleteTicket(id) {
+            if (confirm('سوف يتم حذف  المشكلة نهائيا" ؟')) {
+                $.ajax({
+                    url: '/tickets/' + id,
+                    type: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        // Reload the page to reflect the updated list of tickets
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle the error case, e.g., show an error message
+                        console.error(error);
+                    }
+                });
+            }
+        }
+    </script>
     </body>
 </html>

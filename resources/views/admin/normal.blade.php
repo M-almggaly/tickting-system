@@ -77,7 +77,7 @@
                                 </a>
                             </button>
                             <button class="show-ticket" type="button" value=""
-                            style="border-radius: 6px;border: 1px solid #08061c17;width: 100%; font-size: 15px"
+                            style="border-radius: 6px;border: 1px solid #08061c17;width: 100%; font-size: 13px"
                             onclick="deleteTicket({{ $show->id }})">
                             <i class="fi fi-bs-trash"></i> حذف</button></td>
                         </tr>
@@ -109,6 +109,7 @@
     <script src="{{ url('assets-ticket/demo/chart-bar-demo.js') }}"></script>
     <script src="{{ url('js-ticket/simple-datatables.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ url('js-ticket/datatables-simple-demo.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {{-- <script>
         $('.show-modal').on('click', function(e) {
             const ticketId = $(this).data('id');
@@ -129,7 +130,7 @@
                 console.error('Response:', xhr.responseText);
             }
         });
-        });</script>
+        });</script>--}}
         <script>
         
         function deleteTicket(id) {
@@ -151,7 +152,7 @@
                 });
             }
         }
-            </script> --}}
+            </script> 
 </body>
 
 </html>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 class TicketController extends Controller
 {
     /**
@@ -46,7 +45,9 @@ class TicketController extends Controller
             'expected' => 'required',
             'actual' => 'required',
             'deprartment' => 'required',
-            'img' => 'required|image|mimes:jpeg,png,jpg'
+            'img' => 'array|max:5', // Adjust max count as needed
+            'img.*' => 'image|mimes:jpeg,png,jpg',
+    
         ]);
     
         if ($request->input('reparted') == 'on') {
@@ -65,34 +66,21 @@ class TicketController extends Controller
         $create->title = strip_tags($request->input('title'));
         $create->support_documentation = strip_tags($request->input('support'));
 
-        $image = $request->file('img');
-        $img2 = $request->file('img2');
-
-
-        if($image != ""){
-            // Get the original filename without extension
-            $originalFilenameimg = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-            // Get the file extension
-            $extensionimg = $image->getClientOriginalExtension();
-            // Generate a unique filename using the original filename and extension
-            $imageName = rand(1,99999).'_'.ltrim($originalFilenameimg) . '.' . $extensionimg;
-            $image->storeAs('/public/assets-ticket', $imageName); // Adjust path as needed
-            if($img2 != ""){
-            // Get the original filename without extension
-            $originalFilenamevid = pathinfo($img2->getClientOriginalName(), PATHINFO_FILENAME);
-            // Get the file extension
-            $extensionvid = $img2->getClientOriginalExtension();
-            // Generate a unique filename using the original filename and extension
-            $img2name = rand(1,99999).'_'.ltrim($originalFilenamevid) . '.' . $extensionvid;
-            $img2->storeAs('/public/assets-ticket', $img2name); // Adjust path as needed
-            $Name = $imageName . "," . $img2name;
-            $create->image = $Name;  // Store only the generated filename
-            }
-            else{
-            $Name = $imageName;
-            $create->image = $Name; 
+        $images = $request->file('img');
+        $imagePaths = [];
+    
+        if ($images) {
+            foreach ($images as $image) {
+                $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/assets-ticket', $imageName);
+                $imagePaths[] = $imageName;
             }
         }
+    
+        $create->image = implode(',', $imagePaths);
+    
+        // ... rest of your code ...
+    
         $create->user_id = auth()->user()->id;
 
         // Check if department already exists using first()
